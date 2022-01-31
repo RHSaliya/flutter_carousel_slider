@@ -33,10 +33,12 @@ class CarouselSlider extends StatefulWidget {
   final CarouselControllerImpl _carouselController;
 
   final int? itemCount;
+  final double customScale;
 
   CarouselSlider(
       {required this.items,
       required this.options,
+      this.customScale = -1.0,
       carouselController,
       Key? key})
       : itemBuilder = null,
@@ -50,6 +52,7 @@ class CarouselSlider extends StatefulWidget {
       {required this.itemCount,
       required this.itemBuilder,
       required this.options,
+      this.customScale = -1.0,
       carouselController,
       Key? key})
       : items = null,
@@ -233,7 +236,7 @@ class CarouselSliderState extends State<CarouselSlider>
       return SizedBox(child: child, width: width, height: height);
     }
     return Transform.scale(
-        scale: scale!,
+        scale: widget.customScale != -1.0 ? widget.customScale : scale!,
         child: Container(child: child, width: width, height: height));
   }
 
